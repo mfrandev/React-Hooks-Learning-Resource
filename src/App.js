@@ -7,6 +7,8 @@ function App() {
   return (
     <div className="App">
 
+      {/* ---------------------------------------- 1. useState() ---------------------------------------- */}
+
       {/*
 
         Notes On useState:
@@ -25,6 +27,8 @@ function App() {
       {/* <StateStuff/> */}
 
 
+      {/* ---------------------------------------- 2. useEffect() ---------------------------------------- */}
+
       {/*
 
         Notes On useEffect
@@ -41,6 +45,8 @@ function App() {
       */}
       {/* <EffectStuff /> */}
 
+
+      {/* ---------------------------------------- 3. useReducer() ---------------------------------------- */}
 
       {/*
 
@@ -64,20 +70,22 @@ function App() {
       {/* <ReducerStuff /> */}
 
 
+      {/* ---------------------------------------- 4. useMemo() ---------------------------------------- */}
+
       {/* 
 
         Notes on useMemo
 
         1. React components will re-render when modified
         2. Can apply useMemo to tell portions of the component not to re-render if it would require an expensive computation 
-           AND the value of that computation is unchanged before the previous modification
+           AND the value of that computation is unchanged from before the re-rendering
         3. By wrapping the expensive function call in useMemo, returning it from its function parameter, and properly setting
            the state dependencies, the value will not recalculate when the component re-renders as long as it is unchanged
         4. Consider how pass by reference might influence this
            a. i.e. how when the component re-renders, an object's values may be the same, but the memory reference changes
 
       */}
-      <MemoStuff />
+      {/* <MemoStuff /> */}
 
     </div>
   );
