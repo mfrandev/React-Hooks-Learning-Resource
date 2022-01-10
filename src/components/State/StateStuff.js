@@ -3,26 +3,27 @@ import Score from './ScoreStateStuff';
 
 function StateStuff() {
 
-    //Setup the useState hook for the red team 
+    //Use the useState hook to initialize and maintain the state of the red team
     const [redTeam, setRedTeam] = useState(() => {
-        console.log("setup red");
         return {td: 0, fg: 0, total: 0}
     });
 
-    //Setup the useState hook for the blue team 
+    //Use the useState hook to initialize and maintain the state of the blue team
     const [blueTeam, setBlueTeam] = useState(() => {
-        console.log("setup blue");
         return {td: 0, fg: 0, total: 0}
     });
 
     return (
         <div>
+            {/* Display the score of the red team by passing the Score component the red team data as props */}
             <Score
                 teamData = {redTeam}
                 setTeamData = {setRedTeam}
                 color = "Red" 
             />
             <br/><br/>
+
+            {/* Display the score of the blue team by passing the Score component the blue team data as props */}
             <Score
                 teamData = {blueTeam}
                 setTeamData = {setBlueTeam}

@@ -31,11 +31,15 @@ const ACTORS = {
 }
 
 //Create the logic that is called from dispatch for all the different scenarios 
-//Action is what is passed to dispatch 
+//Action is what is passed to dispatch, state is the current state before updating
+//The shape of action in this scenario will look like: { type: ACTIONS.FG, team: ACTORS.BLUE }
 const reducer = (state, action) => {
-    console.log("reducer called");
+    
+    //IF THE RED TEAM SCORES...
     if(action.team === ACTORS.RED) {
         switch(action.type) {
+
+            //A FG, DO THIS
             case ACTIONS.FG:
                 return {
                     ...state,
@@ -45,6 +49,8 @@ const reducer = (state, action) => {
                         total: state.redTeam.total + 3
                     } 
                 }
+
+            //A TD, DO THIS
             case ACTIONS.TD:
                 return {
                     ...state, 
@@ -54,11 +60,18 @@ const reducer = (state, action) => {
                         total: state.redTeam.total + 7
                     } 
                 }
+            
+            //SOMETHING UNEXPECTED, DO NOTHING
             default: 
                 return state
         }
-    } else if(action.team === ACTORS.BLUE) {
+    } 
+    
+    //IF BLUE TEAM SCORES...
+    else if(action.team === ACTORS.BLUE) {
         switch(action.type) {
+
+            //A FG, DO THIS
             case ACTIONS.FG:
                 return {
                     ...state,
@@ -68,6 +81,8 @@ const reducer = (state, action) => {
                         total: state.blueTeam.total + 3
                     } 
                 }
+
+            //A TD, DO THIS
             case ACTIONS.TD:
                 return {
                     ...state, 
@@ -77,6 +92,8 @@ const reducer = (state, action) => {
                         total: state.blueTeam.total + 7
                     } 
                 }
+
+            //SOMETHING UNEXPECTED, DO NOTHING
             default: 
                 return state
         }
@@ -86,13 +103,15 @@ const reducer = (state, action) => {
 function ReducerStuff() {
 
     //useReducer hook returns a [state, dispatchFunction] tuple
-    //useReducer hook accepts a function object and initial state as parameters
-
+    //state is the current state, dispatchFunction updates the state using the reducer function object parameter
+    //useReducer hook accepts a function object and the initial state as parameters
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
 
         <div>
+            
+            {/* Display the score of the red team by passing the Score component the red team data as props */}
             <Score 
                 color="Red"
                 team={state.redTeam}
@@ -103,6 +122,7 @@ function ReducerStuff() {
 
             <br/><br/>
 
+            {/* Display the score of the blue team by passing the Score component the blue team data as props */}
             <Score 
                 color="Blue"
                 team={state.blueTeam}
