@@ -2,6 +2,7 @@ import StateStuff from "./components/StateStuff";
 import EffectStuff from "./components/EffectStuff";
 import ReducerStuff from "./components/ReducerStuff";
 import MemoStuff from "./components/MemoStuff"
+import RefStuff from "./components/RefStuff";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         2. useEffect() takes two parameters
           a. A function that specifies what should the effect should trigger
           b. A list of dependencies that trigger the effect
+          c. Omitting the dependncy list causes everything to trigger the useEffect
         3. An empty set of dependencies means the effect triggers on page load and no other circumstances
         4. Have to be careful when using event listeners to return a function that removes the event listener for performance
         5. Have to also be careful that dependencies given do not cause any infinite loops because the dependency gets modified
@@ -62,7 +64,7 @@ function App() {
           a. First is an action for the reducer function { type: ACTION.TYPE }
           b. Second is a payload containg data that might have been received from the user { payload: { name: name }}
         4. reducer() takes two arguments
-          a. First is a state object matching the type (and shape) of the initial state
+          a. First is a state object containing the current state before modification
           b. Second is an action object specifying what should be done (via switch) 
              and also contains the payload if applicable
 
@@ -83,9 +85,32 @@ function App() {
            the state dependencies, the value will not recalculate when the component re-renders as long as it is unchanged
         4. Consider how pass by reference might influence this
            a. i.e. how when the component re-renders, an object's values may be the same, but the memory reference changes
+        5. Also keep in mind there is a memory and performance overhead for each useMemo introduced
+          a. So only use it when the benefit is obvious
 
       */}
       {/* <MemoStuff /> */}
+
+
+      {/* ---------------------------------------- 5. useRef() ---------------------------------------- */}
+
+      {/* 
+
+        Notes on useRef
+
+        1. Often used to:
+          a. Access DOM elements via the ref field in an element
+            i. Set a variable equal to useRef and place it in the ref={} tag of JSX element
+            ii. Do NOT try to modify the state from this variable, as ref ≠ state
+          b. Storing values independently of the state across renders without triggering a re-render
+            i. Can set the value of the previous state to the ref via useEffect
+            ii. Count how many times a component renders by counting how many times the state variable changes
+        2. useRef() returns an object that looks like: 
+          a. { current: __value } 
+
+
+      */}
+      {/* <RefStuff /> */}
 
     </div>
   );
