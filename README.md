@@ -2,7 +2,7 @@
 
 ## To use any code, uncomment one of the components from App.js. I strongly recommend only using one component at a time
 
-### Additionally, run "npm install" from the directory containing package-lock.json to install the necessary dependencies
+### Additionally, run "npm install" from the directory containing package.json to install the necessary dependencies
 
 <br>
 
